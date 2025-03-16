@@ -1,0 +1,132 @@
+<div class="container">
+  <!-- Loading and Error -->
+  <div *ngIf="loading$ | async" class="alert info">Loading...</div>
+  <div *ngIf="error$ | async as error" class="alert error">Error: {{ error }}</div>
+
+  <!-- Product Header -->
+  <div class="section-header">
+    <h2>Products</h2>
+    <button class="btn primary" (click)="showAddProductForm()">Add New Product</button>
+  </div>
+
+  <!-- Add Product Form -->
+  <div *ngIf="showAddForm" class="card">
+    <div class="card-header">Add Product</div>
+    <div class="card-body">
+      <form [formGroup]="addForm" (ngSubmit)="addProduct()">
+        <div class="form-group">
+          <label for="addTitle">Title</label>
+          <input type="text" id="addTitle" formControlName="title" required>
+          <div *ngIf="addForm.get('title')?.invalid && addForm.get('title')?.touched" class="error-text">
+            Title is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addPrice">Price</label>
+          <input type="number" id="addPrice" formControlName="price" required>
+          <div *ngIf="addForm.get('price')?.invalid && addForm.get('price')?.touched" class="error-text">
+            Price is required and must be non-negative.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addDescription">Description</label>
+          <textarea id="addDescription" formControlName="description" required></textarea>
+          <div *ngIf="addForm.get('description')?.invalid && addForm.get('description')?.touched" class="error-text">
+            Description is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addCategory">Category</label>
+          <input type="text" id="addCategory" formControlName="category" required>
+          <div *ngIf="addForm.get('category')?.invalid && addForm.get('category')?.touched" class="error-text">
+            Category is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addImage">Image URL</label>
+          <input type="url" id="addImage" formControlName="image" required>
+          <div *ngIf="addForm.get('image')?.invalid && addForm.get('image')?.touched" class="error-text">
+            Image URL is required.
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn success" [disabled]="addForm.invalid">Add Product</button>
+          <button type="button" class="btn" (click)="cancelForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Update Product Form -->
+  <div *ngIf="showUpdateForm" class="card">
+    <div class="card-header">Update Product</div>
+    <div class="card-body">
+      <form [formGroup]="updateForm" (ngSubmit)="updateProduct()">
+        <div class="form-group">
+          <label for="updateId">ID</label>
+          <input type="text" id="updateId" formControlName="id" readonly>
+        </div>
+        <div class="form-group">
+          <label for="updateTitle">Title</label>
+          <input type="text" id="updateTitle" formControlName="title" required>
+          <div *ngIf="updateForm.get('title')?.invalid && updateForm.get('title')?.touched" class="error-text">
+            Title is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="updatePrice">Price</label>
+          <input type="number" id="updatePrice" formControlName="price" required>
+          <div *ngIf="updateForm.get('price')?.invalid && updateForm.get('price')?.touched" class="error-text">
+            Price is required and must be non-negative.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="updateDescription">Description</label>
+          <textarea id="updateDescription" formControlName="description" required></textarea>
+          <div *ngIf="updateForm.get('description')?.invalid && updateForm.get('description')?.touched" class="error-text">
+            Description is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="updateCategory">Category</label>
+          <input type="text" id="updateCategory" formControlName="category" required>
+          <div *ngIf="updateForm.get('category')?.invalid && updateForm.get('category')?.touched" class="error-text">
+            Category is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="updateImage">Image URL</label>
+          <input type="url" id="updateImage" formControlName="image" required>
+          <div *ngIf="updateForm.get('image')?.invalid && updateForm.get('image')?.touched" class="error-text">
+            Image URL is required.
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn success" [disabled]="updateForm.invalid">Update Product</button>
+          <button type="button" class="btn" (click)="cancelForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Product Cards -->
+  <div class="card-grid">
+    <div *ngFor="let product of products$ | async" class="card product-card">
+      <div class="card-image">
+        <img [src]="product.image" alt="{{ product.title }}">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">#{{product.id}} - {{ product.title }}</h3>
+        <div class="card-details">
+          <p class="product-description">{{ product.description }}</p>
+          <p><span>Price:</span> {{ product.price | currency }}</p>
+          <p><span>Category:</span> {{ product.category }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn info" (click)="showUpdateProductForm(product)">Edit</button>
+        <button class="btn danger" (click)="deleteProduct(product.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
