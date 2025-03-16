@@ -89,15 +89,6 @@ UI Component → Action → Reducer → Store → Selector → UI Update
                           ↓
                   Effect (HTTP Call → Microservice)
 
-Deployment
-
-    Frontend (Firebase):
-    bash
-    Copy
-
-    cd frontend
-    ng build --configuration=production
- 
 
 Project Structure
 Copy
