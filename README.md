@@ -1,25 +1,25 @@
-# Report on E-commerce Application with Angular, NgRx, and .NET Microservices
+# E-commerce Application with Angular, NgRx, and .NET Microservices
 
-## Introduction
-This report details the development and implementation of a full-stack e-commerce application utilizing Angular, NgRx state management, and .NET Core microservices. The application is designed to provide a seamless shopping experience, including product browsing, order placement, and transaction history.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A full-stack e-commerce application demonstrating **NgRx state management** with Angular and **microservices architecture** using .NET Core.
 
 ---
 
 ## Features
 ### Frontend (Angular)
-- Product listing with the ability to add/remove items.
-- Order placement functionality with NgRx state persistence.
-- Implementation of loading states and error handling mechanisms.
+- Product listing with add/remove items functionality.
+- Order placement with NgRx state persistence.
+- Loading states and error handling implementation.
 
 ### Backend (.NET Core Microservices)
-- **Product Service**: Provides CRUD operations for managing products.
-- **Order Service**: Handles order creation and order history retrieval.
-- REST APIs built using Entity Framework Core and SQL Server for data management.
+- **Product Service**: Handles CRUD operations for products.
+- **Order Service**: Manages order creation and history.
+- REST APIs using Entity Framework Core and SQL Server.
 
 ---
 
 ## Technologies Used
-The project utilizes the following technologies:
 
 | Component       | Stack                          |
 |----------------|--------------------------------|
@@ -29,14 +29,14 @@ The project utilizes the following technologies:
 
 ---
 
-## Installation and Setup
+## Installation
 ### Prerequisites
 - Node.js v18+
 - .NET Core SDK 7.0
 - SQL Server
 - Angular CLI: `npm install -g @angular/cli`
 
-### Installation Steps
+### Setup Instructions
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/ecommerce-app.git
@@ -46,7 +46,6 @@ The project utilizes the following technologies:
    ```bash
    cd frontend
    npm install
-   # Configure environment variables in `src/environments/environment.ts`
    ng serve
    ```
 3. **Backend Setup**
@@ -54,14 +53,12 @@ The project utilizes the following technologies:
      ```bash
      cd backend/ProductService
      dotnet restore
-     # Update SQL connection string in `appsettings.json`
      dotnet run
      ```
    - **Order Service**
      ```bash
      cd backend/OrderService
      dotnet restore
-     # Update SQL connection string in `appsettings.json`
      dotnet run
      ```
 
@@ -84,7 +81,6 @@ The project utilizes the following technologies:
 ---
 
 ## NgRx State Management Flow
-The application follows the standard NgRx state management flow:
 ```
 UI Component → Action → Reducer → Store → Selector → UI Update
                           ↓
@@ -110,7 +106,6 @@ UI Component → Action → Reducer → Store → Selector → UI Update
 ---
 
 ## Contribution Guidelines
-Contributors can follow these steps to contribute:
 1. Fork the repository.
 2. Create a feature branch:
    ```bash
@@ -129,10 +124,9 @@ Contributors can follow these steps to contribute:
 ---
 
 ## License
-This project is distributed under the MIT License. Refer to the LICENSE file for details.
+Distributed under the MIT License. See LICENSE for details.
 
 ---
 
 ## Acknowledgments
-We appreciate the contributions from the development community and the resources provided by open-source platforms that made this project possible.
-
+Special thanks to the open-source community for their valuable contributions.
